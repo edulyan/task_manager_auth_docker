@@ -16,7 +16,7 @@ services:
     restart: always
   postgres:
     container_name: localhost
-    image: postgres: 13
+    image: postgres: 13.4
     environment: 
       PG_DATA: /var/lib/postgresql/data
     ports:
