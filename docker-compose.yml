@@ -1,4 +1,4 @@
-version: '3.0'
+version: '3'
 
 services:
   main:
@@ -16,13 +16,16 @@ services:
     restart: always
   postgres:
     container_name: localhost
-    image: postgres: 13.4
-    environment: 
+    image: postgres:13.4
+    environment:
+      POSTGRES_PASSWORD: 20012002
+      POSTGRES_USER: ed
+      POSTGRES_DB: auth_up
       PG_DATA: /var/lib/postgresql/data
     ports:
       - 5432:5432
     volumes:
-      - pgdata: /var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
     restart: always
 
     volumes: 
