@@ -1,13 +1,14 @@
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
-import { getMetadataArgsStorage } from 'typeorm';
+require('dotenv').config();
+console.log(process.env);
 
 export const configPG: TypeOrmModuleOptions = {
   type: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  username: 'ed',
-  password: '20012002',
-  database: 'auth_up',
+  host: process.env.POSTGRES_HOST,
+  port: parseInt(process.env.POSTGRES_PORT) || 5432,
+  username: process.env.POSTGRES_USER,
+  password: process.env.POSTGRES_PASSWORD,
+  database: process.env.POSTGRES_DB,
   synchronize: true,
   entities: [__dirname + '/../**/*.entity{.ts,.js}'],
 };

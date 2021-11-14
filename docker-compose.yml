@@ -1,32 +1,40 @@
-version: '3'
+version: '3.7'
 
 services:
-  main:
-    container_name: main
-    build:
-      context: .
-    volumes:
-      - .:/app
-      - /app/node_modules
-    ports:
-      - 3000:3000
-    command: npm run start:dev
-    depends_on:
-      - postgres
-    restart: always
+  # main:
+  #   container_name: main
+  #   build:
+  #     context: .
+  #   env_file:
+  #     - .env
+  #   volumes:
+  #     - .:/app
+  #     - /app/node_modules
+  #   ports:
+  #     - 3001:3001
+  #     - 9229:9229
+  #   command: npm run start:dev
+  #   # depends_on:
+  #   #   - postgres
+  #   restart: always
+  # db:
+  #   image: postgres
+  #   restart: always
   postgres:
-    container_name: localhost
-    image: postgres:13.4
+    container_name: postgres
+    image: postgres:14.0
+    env_file:
+      - .env
     environment:
-      POSTGRES_PASSWORD: 20012002
-      POSTGRES_USER: ed
-      POSTGRES_DB: auth_up
+      # POSTGRES_USER: edgar
+      # POSTGRES_PASSWORD: 20012002Gblth
+      # POSTGRES_DB: task_manager_auth
+      # POSTGRES_PORT: 5432
       PG_DATA: /var/lib/postgresql/data
     ports:
       - 5432:5432
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+    # volumes:
+    #   - pgdata:/var/lib/postgresql/data
     restart: always
-
-    volumes: 
-      pgdata:
+# volumes:
+#   pgdata:
